@@ -31,5 +31,5 @@ def pascal_triangle(n):
                 arr.append(arrOld[j-1][i-1] + arrOld[j-1][i])
         arrOld.append(arr)  # adds the new row to Pascal's Triangle
 
-return arrOld
+    return arrOld
 
