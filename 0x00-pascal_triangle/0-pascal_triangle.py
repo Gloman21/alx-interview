@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """interview prep"""
 
+
 def pascal_triangle(n):
     """
     generate Pascal's triangle up to the given number of rows.
@@ -32,4 +33,3 @@ def pascal_triangle(n):
         arrOld.append(arr)  # adds the new row to Pascal's Triangle
 
     return arrOld
-
