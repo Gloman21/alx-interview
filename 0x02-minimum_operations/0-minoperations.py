@@ -1,17 +1,30 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 minimum operations
 """
 
 
-def minOperations(n):
+def minOperations(n: int) -> int:
     """
+        This function calculates the minimum number of operations required
+        to reach a certain number of characters.
+    Args:
+        n (int): The number of characters to reach.
+    Returns:
+        int: The minimum number of operations required to reach the number
+        of characters.
+    """
+    if not isinstance(n, int):
+        raise TypeError("n must be an integer")
+    string = 1
+    tempstring = 0
+    copyall = 0
+    paste = 0
+    while string < n:
+        if n % string == 0:
+            tempstring = string
+            copyall += 1
 
-    :param n:
-    :return:
-    """
-    if n <= 1:
-        return 0
-    for op in range(2, n+1):
-        if n % op == 0:
-            return minOperations(int(n/op)) + op
+        string = string + tempstring
+        paste += 1
+    return paste + copyall
