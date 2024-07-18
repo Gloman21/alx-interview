@@ -2,35 +2,48 @@
 """Reads stdin line by line and computes the metrics:"""
 
 import sys
+from time import sleep
 
-cache = {'200': 0, '301': 0, '400': 0, '401': 0,
-         '403': 0, '404': 0, '405': 0, '500': 0}
-total_size = 0
-counter = 0
 
-try:
-    for line in sys.stdin:
-        line_list = line.split(" ")
-        if len(line_list) > 4:
-            code = line_list[-2]
-            size = int(line_list[-1])
-            if code in cache.keys():
-                cache[code] += 1
-            total_size += size
-            counter += 1
+def print_stats(stats_p: dict, file_size_p: int) -> None:
+    """
+    prints the statistics calculated.
+    Args:
+        stats_p: Dictionary containing status code counts.
+        file_size_p: Total file size.
+    Returns:
+        None
+    """
+    print(f"File size: {file_size_p}")
+    for K, B in sorted(stats_p.items()):
+        if B:
+            print(f"{K}: {B}")
 
-        if counter == 10:
-            counter = 0
-            print('File size: {}'.format(total_size))
-            for key, value in sorted(cache.items()):
-                if value != 0:
-                    print('{}: {}'.format(key, value))
 
-except Exception as err:
-    pass
+if __name__ == '__main__':
 
-finally:
-    print('File size: {}'.format(total_size))
-    for key, value in sorted(cache.items()):
-        if value != 0:
-            print('{}: {}'.format(key, value))
+    filesize, count = 0, 0
+    codes = ["200", "301", "400", "401", "403", "404", "405", "500"]
+    stats = {K: 0 for K in codes}
+
+    try:
+        for line in sys.stdin:
+            count += 1
+            data = line.split()
+            try:
+                status_code = data[-2]
+                if status_code in stats:
+                    stats[status_code] += 1
+            except BaseException:
+                pass
+            try:
+                filesize += int(data[-1])
+            except BaseException:
+                pass
+            if count % 10 == 0:
+                print_stats(stats, filesize)
+        print_stats(stats, filesize)
+    except KeyboardInterrupt:
+        sleep(1)
+        print_stats(stats, filesize)
+        raise
