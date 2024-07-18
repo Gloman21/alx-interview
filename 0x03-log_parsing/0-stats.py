@@ -47,3 +47,4 @@ if __name__ == '__main__':
         sleep(1)
         print_stats(stats, filesize)
         raise
+    
