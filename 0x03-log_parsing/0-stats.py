@@ -7,7 +7,7 @@ from time import sleep
 
 def print_stats(stats_p: dict, file_size_p: int) -> None:
     """
-    prints the statistics calculated.
+    Prints the statistics calculated.
     Args:
         stats_p: Dictionary containing status code counts.
         file_size_p: Total file size.
@@ -15,16 +15,16 @@ def print_stats(stats_p: dict, file_size_p: int) -> None:
         None
     """
     print(f"File size: {file_size_p}")
-    for K, B in sorted(stats_p.items()):
-        if B:
-            print(f"{K}: {B}")
+    for k, v in sorted(stats_p.items()):
+        if v:
+            print(f"{k}: {v}")
 
 
 if __name__ == '__main__':
 
     filesize, count = 0, 0
     codes = ["200", "301", "400", "401", "403", "404", "405", "500"]
-    stats = {K: 0 for K in codes}
+    stats = {k: 0 for k in codes}
 
     try:
         for line in sys.stdin:
