@@ -9,7 +9,6 @@ if len(sys.argv) != 2:
     print('Usage: nqueens N')
     exit(1)
 
-<<<<<<< HEAD
 try:
     n_q = int(sys.argv[1])
 except ValueError:
@@ -53,7 +52,7 @@ for answer in reversed(solve_nqueens(n_q)):
     for p in [list(p) for p in answer]:
         result.append([i - 1 for i in p])
     print(result)
-=======
+
     try:
         a_q = int(sys.argv[1])
     except ValueError:
@@ -76,7 +75,7 @@ for answer in reversed(solve_nqueens(n_q)):
                 if safe_queen((n, i + 1), solution)]
 
 
-    def attack_queen(square, quen):
+    def attack_queen(square, queen):
         '''Self descriptive'''
         (row1, col1) = square
         (row2, col2) = queen
@@ -94,10 +93,10 @@ for answer in reversed(solve_nqueens(n_q)):
 
 
 
-    for answer in reversed(solved_nqueens(a_q)):
+    for answer in reversed(solve_nqueens(a_q)):
         result = []
         for p in [list(p) for p in answer]:
             result.append([i -1 for i in p])
         print(result)
 
->>>>>>> 05dd36c46e6f0484b388f3854461344ca7f331c6
+
