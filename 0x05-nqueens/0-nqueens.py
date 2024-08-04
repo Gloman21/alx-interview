@@ -21,7 +21,7 @@ if n_q < 4:
 
 
 def solve_nqueens(n):
-    '''Self descriptive'''
+    '''self descriptive'''
     if n == 0:
         return [[]]
     inner_solution = solve_nqueens(n - 1)
@@ -32,7 +32,7 @@ def solve_nqueens(n):
 
 
 def attack_queen(square, queen):
-    '''Self descriptive'''
+    '''self descriptive'''
     (row1, col1) = square
     (row2, col2) = queen
     return (row1 == row2) or (col1 == col2) or\
@@ -40,7 +40,7 @@ def attack_queen(square, queen):
 
 
 def safe_queen(sqr, queens):
-    '''Self descriptive'''
+    '''self descriptive'''
     for queen in queens:
         if attack_queen(sqr, queen):
             return False
@@ -52,51 +52,3 @@ for answer in reversed(solve_nqueens(n_q)):
     for p in [list(p) for p in answer]:
         result.append([i - 1 for i in p])
     print(result)
-
-    try:
-        a_q = int(sys.argv[1])
-    except ValueError:
-        print('N must be a number')
-        exit(1)
-
-    if a_q < 4:
-        print('N must be at least 4')
-        exit(1)
-
-
-    def solve_nqueens(n):
-        '''Self descriptive'''
-        if n == 0:
-            return [[]]
-        inner_solution = solve_nqueens(n - 1)
-        return [solution + [(n, i + 1)]
-                for i in range (a_q)
-                for solution in inner_solution
-                if safe_queen((n, i + 1), solution)]
-
-
-    def attack_queen(square, queen):
-        '''Self descriptive'''
-        (row1, col1) = square
-        (row2, col2) = queen
-        return (row1 == row2) or (col1 == col2) or\
-                abs(row1 - row2) == abs(col1 - col2)
-
-
-
-    def safe_queen(sqr, queens):
-        '''Self descriptive'''
-        for queen in queens:
-            if attack_queen(sqr, queen):
-                return False
-            return True
-
-
-
-    for answer in reversed(solve_nqueens(a_q)):
-        result = []
-        for p in [list(p) for p in answer]:
-            result.append([i -1 for i in p])
-        print(result)
-
-
