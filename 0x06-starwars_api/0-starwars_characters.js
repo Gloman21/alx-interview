@@ -1,5 +1,5 @@
 #!/usr/bin/node
-import { promisify } from 'util';
+const util = require('util');
 const request = promisify(require('request'));
 const filmID = process.argv[2];
 
